@@ -1,0 +1,32 @@
+
+body {
+     background-color: wheat;
+}
+
+h3 {
+    color: rgb(236, 122, 122);
+    text-align: left;
+}
+
+p {
+    font-family: Verdana;
+    font-size: 20px;
+
+}
+
+u {    
+    font-family: Verdana;
+    font-size: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse; 
+    text-align: center;
+}
+
+.right {
+    float: right;
+    clear: both;
+    width:20%;
+}
