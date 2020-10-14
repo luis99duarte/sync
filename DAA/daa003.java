@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.*;
 
 public class daa003 {
     public static void main(String[] args) {
@@ -36,7 +37,7 @@ public class daa003 {
         }
     }   
 
-   public static int converter(String[] plate) {
+   public static int converter(String[] pair) {
         // começar com divisão entre gerações (if...)
         // em cada geração tem o número da primeira matrícula atribuído e depois vai identando
         // calcula como se fosse para a primeira geração e depois soma o valor atribuído à geração
@@ -46,5 +47,9 @@ public class daa003 {
         /* Para cada letra mais à direita basta somar o número com 10000*X. Para cada letra à esquerda soma-se tudo o que obtemos
            com 230000 */    
         //retornar esse int
+
+        if(pair[0].isLetter() && pair[1].isDigit() && pair[2].isDigit()) { // geração 1
+            
+        }
    }
 }
