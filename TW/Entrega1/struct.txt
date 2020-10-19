@@ -1,0 +1,166 @@
+O trabalho tem de ser feito em HTML, CSS e JS
+Implementação do jogo Othello
+ENTREGA ATÉ DIA 30 DE OUTUBRO
+
+
+Guide Map:
+- Começar pelas páginas fixas (definir em HTML e organizar com CSS)
+    - Autenticação
+    - Tabuleiro (usar divs)
+    - etc
+- Áreas temporárias (definir em HTML e organizar com CSS)
+    - Scoreboard (usar tabelas)
+    - Regras
+- Organizar conteúdo na página
+    - Peças de jogo, usar entidades
+    - Scoreboards
+    - Regras
+    - Widgets formulário
+        - Autenticação
+        - Configuração
+        - Comandos
+- Formatar graficamente com CSS
+
+Peças e Tabuleiro
+- Representações para ambos
+- Funções sobre peças
+    - Iniciar Tabuleiro
+    - Mostrar Tabuleiro
+
+Interação e Jogo
+- Controlo do jogo
+    - Gerar tabuleiro inicial
+    - Invocar jogador automático (depois da jogada)
+    - Verificar
+        - Necessidade de passar (caso não consiga jogar)
+        - Fim do jogo
+    - Decidir o vencedor e o empate
+    - Registar o resultado
+- Jogador humano
+    - Seleção de peça a jogar (carregar na peça inicia o processo)
+    - Gerar conjunto de peças a Verificar
+    - Verificar a validade da jogada (Há peças a virar?)
+    - Aplicar modificações
+    - Invocar jogador automático
+- Jogador automático
+    - Gerar todas as jogadas possíves (peças livres)
+    - Para cada uma, gerar conjunto de peças a virar
+    - Escolher jogada possível (incluindo o passar)
+        - Random (entre as válidas)
+        - Maior número de peças viradas
+        - Avaliação estática (posição da peça)
+        - Algoritmo minimax (Valorização)
+
+Regras
+- Tabuleiro
+    - Tabuleiro quadrado
+    - Grelha de 8 linhas por 8 colunas (não usar tabelas)
+    - Náo xadrezado
+    - Normalmente com fundo verde
+- Peças
+    - Denominam-se discos
+    - São circulares
+    - Com 2 face de diferentes tonalidades
+        - Lado claro
+        - Lado escuro
+- Início
+    - Não posição inicial há 4 peças
+    - 2 de cada uma das 2 tonalidades - claro e escuro
+    - Colocadas nas casas centrais
+    - Peças da mesma tonalidade ficam em diagonal
+    - Peças escuras jogam primeiro
+- Jogar(Verificar nas regras, Jogar I, Jogar II, Jogar III e Terminar)
+    - Jogadores jogam alternadamente, colocam uma peça da sua cor numa casa livres. Se na 
+    mesma linha, coluna ou diagonal da peça jogada, as peças da cor contrária viram para a 
+    cor do jogador (ver exemplo no Jogar I das regras)
+    - Só pode ser jogada uma peça se for virada alguma
+    - A peça colocada pode virar várias peças do adversário que estão na mesma linha, coluna
+    ou diagonal da peça jogada, desde que num dos extremos esteja a peça jogada e no outro 
+    esteja uma peça do mesmo tom
+    - Podem ser viradas várias peças consecutivas do adversário na mesma linha, coluna ou
+    diagonal, desde que estejam delimitadas pela peça jogada e da outra do mesmo tom
+- Passar
+    - Na sua vez, o jogador só pode jogar se virar peças, caso contrário, não poderá jogar
+    e terá de passar a jogada, mas só pode passar se não tiver jogada possível
+- Terminar
+    - Jogo termina quando nenhum jogador pode jogar, geralmente quando o tabuleiro está 
+    todo preenchido, mas não necessariamente. Ganha o jogo com maior número de peças
+
+Regras de entrega
+- O jogo deve ser uma aplicação numa págia única. A página deve ser dividida em várias áreas
+para diferentes finalidadas
+- HTML deve estar todo num ficheiro, o CSS pode estar dividido entre vários, mas devidamente
+embebido no HTML. O JavaScript também deve ser colocado num ficheiro independente
+- É obrigatório validar o HTML e o CSS
+- Logótipo
+    - A área do logo deverá apresentar o nome do jogo de forma destacada (nome qualquer)
+    - Pode ser apenas um texto, formatado de forma destacada, ou uma imagem
+- Configuração
+    - Permitir ao jogador optar por diferentes configurações de jogo
+        - Jogo contra computador ou outro jogador
+        - Cor do jogador: claro ou escuro
+        - Nível da inteligência artificial
+    - Na primeira entrega, apenas se tem de implementar o jogador contra o computador
+    - O primeiro jogador é o dos discos escuros. Se o jogador escolher os discos claros,
+    o computador inicia a partida de imediato
+- Comandos
+    - Visualizar as instruções
+    - Iniciar o jogo com a configuração corrente
+    - Passar a jogada (apenas se não for possível jogar)
+    - Desistir do jogo
+    - Visualizar as classificações
+- Identificação
+    - Autenticação do jogador com username e password
+    - Deve ser identificado como sessão iniciado, permitindo terminar sessão
+    - Na primeira entrega não é necessário ter um autenticador, no entanto, a área tem de
+    estar criada e formatada
+- Estado
+    - Sumário do estado do jogo que indica as contagens das células
+        - com discos claros
+        - com discos escuros
+        - livres
+        - A soma destas contagens vai ser sempre 64
+- Tabuleiro
+    - Para se iniciar, pode-se fazer o tabuleiro em HTML, combinando contentores para
+    representar pilhas e as peças. O posicionamento e a formatação gráfica devem ser feitos
+    em CSS
+    - Para a submissão do trabalho, o tabuleiro tem de ser gerado a partir de JavaScript
+    usando a DOM e a sintaxo JavaScript do CSS
+    - Para gerar a representação gráfica do tabuleiro, será necessário começar por
+    identificar a estrutura de dados que o representa. Os métodos que geram o tabuleiro e 
+    recebem a interação opera sobre esses dados.
+    - Será valorizada a representação do tabuleiro numa abordagem orientada a objetos, 
+    assim como o resto do jogo
+- Instruções
+    - Esta área serve para apresentar ao jogador as regras do jogo e outras indicações de
+    como jogar nesta aplicação
+    - Tal como para as classificações, poderá ser um painel transitório que se sobrepõem
+    aos restantes. Neste caso será necessário um comando que abra o painel e deverá ter
+    forma de a remover (minimizar)
+- Classificações
+    - O jogador poderá ver uma tabela classificativa com os melhores resultados registados
+    - Na primeira entrega, esta informação será apenas relativa aos jogos realizados contra 
+    o computador
+    - Nas entregas seguintes, quando os adversários forem outros jogadores, as classificações
+     serão obtidas do servidor
+     - Tal como as instruções poderá ser um painel transitório
+- Mensagens
+    - Área para apresentar mensagens durante situações de jogo
+        - O jogo terminou com vitória de um dos jogadores
+        - A jogada é impossível por não serem viradas peças
+        - Indicação da cor a jogar
+        - O jogador desistiu e perdeu
+- IA
+    - Na primeira entrega, o jogador só pode jogar contra o computador. As jogadas do computador
+    são determinadas localmente, no cliente
+    - O algoritmo mais simples é escolher a jogada que produz o maior número de discos do
+    jogador
+    - Será valorizada a implementação de um algoritmo que permita definir um nível de
+    dificuldade. Algoritmo minimax para jogar de forma mais inteligente. Neste caso, o 
+    nível de dificuldade pode ser mapeado na profundidade
+
+NOTA: É aconselhado implementar-se primeiro apenas 1 nível de jogo fácil e deixar os outros
+para quando esse primeiro nível estiver 100% funcional
+
+NOTA: Todas as áreas não tem necessariamente de estar sempre visíveis e que algumas podem
+sobrepor-se temporariamente às outras.
