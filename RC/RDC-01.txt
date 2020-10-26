@@ -1,0 +1,148 @@
+1.
+Encaminhamento hierárquico.
+O custo é o caminho poder não ser o mais curto.
+
+2.
+quantidade (discos) = 100000
+tempo (segundos) = 4 (dias) = 4 * 24 * 60 * 60 = 345600
+
+2.a.
+tamanho (bits) = 1 TeraByte = 1 * 10 ^ 12 * 8 = 8 * 10 ^ 12
+
+capacidade (bits/s) = quantidade * tamanho / tempo
+capacidade (bits/s) = 100000 * (8 * 10 ^ 12) / 345600
+capacidade (bits/s) = (2.3 * 10 ^ 12)
+
+2.b.
+Não começar logo a haver alguns dados que possam ir sendo processados.
+
+3.
+tamanho (bits) = 700 (MB) = 700 * 10 ^ 6 * 8 = 5.60 * 10 ^ 9
+saltos = Alice -> r1 | r1 -> r2 | r2 -> Bob = 3
+capacidade (bits/s) = 100 (Mbps) = 100 * 10 ^ 6 = 1.00 * 10 ^ 8
+
+3.a.
+tempo (segundos) = saltos * tamanho / capacidade
+tempo (segundos) = 3 * (5.60 * 10 ^ 9) / (1.00 * 10 ^ 8)
+tempo (segundos) = 168
+
+3.b.
+tamanho (bits) = 1000 (Bytes) = 8 * 1000 = 8000
+quantidade (ficheiros) = (5.60 * 10 ^ 9) / 8000 = 700000
+
+tempo de um ficheiro (segundos) = tamanho / capacidade
+tempo de um ficheiro (segundos) = 8000 / (1.00 * 10 ^ 8)
+tempo de um ficheiro (segundos) = 8.00 * 10 ^ -5
+
+tempo (segundos) = 2 * tempo de um ficheiro + quantidade * tempo de um ficheiro
+(onde "2 * tempo de um ficheiro" representa a espera pela receção do primeiro)
+tempo (segundos) = 2 * (8.00 * 10 ^ -5) + 700000 * (8.00 * 10 ^ -5)
+tempo (segundos) = 56.0
+
+3.c.
+tamanho do envelope (bits) = 20 (Bytes) = 20 * 8 = 160
+
+tamanho (bits) = 8000 + 160
+tamanho (bits) = 8160
+
+tempo de um ficheiro (segundos) = tamanho / capacidade
+tempo de um ficheiro (segundos) = 8160 / (1.00 * 10 ^ 8)
+tempo de um ficheiro (segundos) = 8.16 * 10 ^ -5
+
+tempo (segundos) = 2 * tempo de um ficheiro + quantidade * tempo de um ficheiro
+tempo (segundos) = 2 * (8.16 * 10 ^ -5) + 700000 * (8.16 * 10 ^ -5)
+tempo (segundos) = 57.12
+
+tempo poupado (segundos) = tempo atual - tempo original
+tempo poupado (segundos) = 57.12 - 56.0
+tempo poupado (segundos) = 1.12
+
+4.
+velocidade de propagação (m/s) = 2 * 10 ^ 8
+comprimento LAN (m) = 4 (km) = 4 * 10 ^ 3
+capacidade LAN (bits/s) = 10 (Mb/s) = 10 * 10 ^ 6 = 1.0 * 10 ^ 7
+comprimento WAN (m) = 80 (km) = 80 * 10 ^ 3 = 8.0 * 10 ^ 4
+capacidade WAN (bits/s) = 1 (Gb/s) = 1 * 10 ^ 9
+tamanho (bits) = 1250 (Bytes) = 8 * 1250 = 10000
+
+4.a.
+tempo de transmissão LAN (segundos) = tamanho / capacidade LAN
+tempo de transmissão LAN (segundos) = 10000 / (1.0 * 10 ^ 7)
+tempo de transmissão LAN (segundos) = 1.0 * 10 ^ -3
+
+tempo de propagação LAN (segundos) = comprimento LAN / velocidade de propagação
+tempo de propagação LAN (segundos) = (4 * 10 ^ 3) / (2 * 10 ^ 8)
+tempo de propagação LAN (segundos) = 2.0 * 10 ^ -5
+
+tempo de transmissão WAN (segundos) = tamanho / capacidade WAN
+tempo de transmissão WAN (segundos) = 10000 / (1 * 10 ^ 9)
+tempo de transmissão WAN (segundos) = 1.0 * 10 ^ -5
+
+tempo de propagação WAN (segundos) = comprimento WAN = velocidade de propagação
+tempo de propagação WAN (segundos) = (8.0 * 10 ^ 4) / (2 * 10 ^ 8)
+tempo de propagação WAN (segundos) = 4.0 * 10 ^ -4
+
+4.b
+tempo (segundos) = tempo de transmissão LAN + tempo de propagação LAN + tempo de transmissão WAN + tempo de propagação WAN
+tempo (segundos) = (1.0 * 10 ^ -3) + (2.0 * 10 ^ -5) + (1.0 * 10 ^ -5) + (4.0 * 10 ^ -4)
+tempo (segundos) = 1.43 * 10 ^ -3
+
+4.c.
+
+4.d.
+
+5.
+distância (m) = 10000 (km) = 10000 * 10 ^ 3 = 10 ^ 7
+capacidade (bits/s) = 1 (Mbps) = 1 * 10 ^ 6 = 10 ^ 6
+velocidade de propagação (m/s) = 2.5 * 10 ^ 8
+tamanho (bits) = 4 * 10 ^ 5
+
+5.a.
+tempo de transmissão (segundos) = tamanho / capacidade
+tempo de transmissão (segundos) = (4 * 10 ^ 5) / (10 ^ 6)
+tempo de transmissão (segundos) = 4 * 10 ^ -1
+
+5.b.
+tempo de propagação (segundos) = distância / velocidade de propagação
+tempo de propagação (segundos) = (10 ^ 7) / (2.5 * 10 ^ 8)
+tempo de propagação (segundos) = 4 * 10 ^ -2
+
+5.c.
+capacidade * atraso de propagação = (10 ^ 6) * (4 * 10 ^ -2)
+capacidade * atraso de propagação = 40000 bits
+
+5.d. 
+capacidade * atraso de propagação = 40000 bits
+
+5.e.
+comprimento de 1 bit (m) = distância / (capacidade * atraso de  propagação)
+comprimento de 1 bit (m) = (10 ^ 7) / (40000)
+comprimento de 1 bit (m) = 250
+
+5.f.
+capacidade (bits/s) = 1 (Gbps) = 1 * 10 ^ 9 = 10 ^ 9
+
+tempo de transmissão (segundos) = tamanho / capacidade
+tempo de transmissão (segundos) = (4 * 10 ^ 5) / (10 ^ 9)
+tempo de transmissão (segundos) = 4 * 10 ^ -4
+
+tempo de propagação (segundos) = 4 * 10 ^ -2 (mantem-se)
+
+capacidade * atraso de propagação = (10 ^ 9) * (4 * 10 ^ -2)
+capacidade * atraso de propagação = 4 * 10 ^ 7 bits
+
+comprimento de 1 bit (m) = (10 ^ 7) / (4 * 10 ^ 7)
+comprimento de 1 bit (m) = 0.25
+
+5.g.
+Número de bits que já foram transmitidos mas ainda não foram recebidos
+
+6.
+(exprimentar)
+
+7.
+Por exemplo, para o sinal subir até um satélite em órbita
+geoestacionária (36000km) e voltar a descer, leva cerca de 250ms.
+Ida-e-volta é o dobro. Se passar por mais do que um, vai sempre somando
+ao atraso. Acrescentando atrasos de processamento (e.g., de codecs com
+muita compressão) nos dois sentidos, facilmente chegamos a 2 ou 3 segundos.
