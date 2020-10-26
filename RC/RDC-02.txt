@@ -1,0 +1,85 @@
+1.
+O problema em violar a separação de camadas é que se houver alterações no protocolo de
+transporte, que não deveriam afectar o encaminhamento (camada de rede), o mecanismo deixa de
+funcionar. O terminal poderia marcar o cabeçalho de rede com um valor de prioridade ou que
+indicasse o tipo de aplicação. Contudo, nada impede o utilizador de alterar o software para
+marcar os seus pacotes de transferência de ficheiros com a prioridade de email para que sejam
+tratados melhor do que os pacotes de transferência de ficheiros de outros utilizadores.
+
+2.
+capacidade (bits/s) = 1 (Mbps) = 1 * 10 ^ 6 = 10 ^ 6
+transmissão (bits/s) = 100 (kbps) = 100 * 10 ^ 3 = 10 ^ 5
+fatia de tempo (%) = 10
+
+2.a.
+utilizadores = capacidade / transmissão
+utilizadores = (10 ^ 6) / (10 ^ 5)
+utilizadores = 10
+
+2.b.
+probabilidade de estar a transmitir (%) = 10
+
+2.c.
+f (k, 35, 0.1) (binomial)
+
+2.d.
+acumultativa a partir de f (11, 35, 0.1) que tem como resultado 0.0004
+
+3.
+a (segundos) = 15
+
+3.a.
+d(min) (segundos) = 0 segundos (primeiro da fila)
+d(max) (segundos) = 9 * 15 = 135 segundos (último da fila)
+d(med) (segundos) = (135 - 0) / 2 = 67.5
+
+3.b.
+Não (por serem independentes)
+
+3.c.
+Pode haver períodos em que não chega ninguém e a máquina fica inutilizada.
+Para, em média, ter uma taxa de chegada igual à de serviço,
+durante o tempo em que está a ser efectivamente utilizada a taxa chegada será 
+ligeiramente superior à de serviço, conduzindo a esse aumento sem limites.
+
+4.
+Não é possível.  Partindo do pressuposto de que seria possível com um protocolo
+usando N mensagens, pelo facto de cada uma se poder perder, 
+teria que funcionar também com N-1 mensagens.  
+Aplicando este princípio recursivamente, 
+teria que funcionar também com 0 mensagens, 
+o que é obviamente impossível.  
+Por conduzir a uma contradição, o pressuposto tem que estar errado.
+
+5.
+5.a. (desenhar o diagrama)
+
+5.b.
+R = L / (variação de tempo entre o envio e a receção)
+
+5.c.
+Tráfego concorrente (em cada um dos sentidos); 
+ligações de meio partilhado; 
+atraso de processamento nos nós.  
+Para mitigar o problema pode repetir-se várias vezes o procedimento.
+
+6.
+6.a.
+(depende, é uma variável aleatória)
+
+6.b.
+Não, por ser uma variável aleatória 
+(depende de um processo que não é determinístico).
+
+7.
+7.a.
+Consegue ver-se se há comunicação bidireccional para a máquina em questão
+e qual é o Round-Trip Time (RTT).
+
+7.b.
+O traceroute envia pacotes para entre os pontos A e B 
+retornando o tempo que o ponto A demora a receber uma mensagem de cada router
+pelo qual os pacotes passaram.
+
+7.c.
+(o resultado depende do estado actual do encaminhamento)
