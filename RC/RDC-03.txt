@@ -1,0 +1,135 @@
+1.
+1.a. 
+O telnet é um utilitário que permite a comunicação de texto bidireccional
+e interactiva através de uma consola virtual, 
+concebido para acesso remoto a uma shell.  
+Por razões de segurança, foi substituído pelo ssh.
+Utilizando o comando na shell o utiliziador invoca a prompt do telnet.
+Utilização: telnet [options] host [port]
+
+1.b.
+O telnet estabelece uma conexão TCP para uma porta do servidor remoto 
+(porta 23, a menos que outra seja explicitamente indicada).  
+Nessa conexão, circulam intercalados texto e informação de controlo 
+(sequências de caracteres).
+
+1.c.
+telnet www.alunos.dcc.fc.up.pt 80 não funciona
+
+1.d.
+No primeiro caso, o servidor fecha a conexão após devolver a resposta.
+o segundo caso, a conexão é mantida aberta por um certo tempo, 
+sendo possível enviar novos pedidos (conexão persistente).
+No terceiro caso são enviados dois pedidos em rajada 
+(conexão persistente com pipelining).
+No último caso é solicitado ao servidor o fecho da conexão após devolver a resposta 
+(conexão não persistente, mesmo sendo HTTP 1.1).
+
+2.
+2.a.
+objetos: n
+tamanho: m
+
+d(trans) = m / (10 ^ 7)
+
+HTTP/1.0 => n * (2RTT + d(trans))
+
+HTTP/1.1 => RTT + n * (RTT + d(trans))
+
+Poupança = (n * (2RTT + d(trans))) - (RTT + n * (RTT + d(trans)))
+Poupança = (2nRTT + nd(trans)) - ((n + 1)RTT + nd(trans))
+Poupança = 2nRTT - (n + 1)RTT
+Poupança = RTT * (2n - (n + 1))
+Poupança = RTT * (2n - n - 1)
+Poupança = RTT * (n - 1)
+Poupança = (n - 1)RTT
+
+2.b.
+RTT_BP (browser ao proxy)
+RTT_PS (proxy ao servidor)
+
+Atraso total = 2nRTT_BP + (n + 1)RTT_PS + nd(trans)
+
+Se RTT_BP << RTT_PS (e.g., está na rede local), 
+há uma poupança ligeiramente menor do que no caso anterior
+Se RTT ≈ RTT_PS, demora ainda mais do que sem proxy
+
+2.c.
+atraso total: 2RTT + nd(trans)
+
+Poupança = (n * (2RTT + d(trans))) - (2RTT + nd(trans))
+Poupança = 2nRTT + nd(trans) - 2RTT - nd(trans)
+Poupança = 2nRTT - 2RTT
+Poupança = RTT(2n - 2)
+
+3.
+gnutls-cli smtp.fc.up.pt -p 25 --starttls-proto=smtp --crlf
+HELO warnerbros.com
+MAIL FROM: <bugsbunny@warnerbros.com>
+RCPT TO: <up123456789@fc.up.pt>
+DATA
+From: Bugs Bunny <bugsbunny@warnerbros.com>
+To: up123456789@fc.up.pt
+Subject: Eh... What's up, doc?
+
+Did you know email is insecure?
+.
+QUIT
+
+4.
+4.a.
+host www.mit.edu
+O endereço IP pode variar porque o 
+MIT está a usar uma Content Delivery Network (CDN), 
+concretamente a Akamai
+
+4.b.
+dig www.facebook.com
+4 secções (question, answer, authority, additional); ver respectivo conteúdo
+
+4.c.
+dig +norecurse www.dcc.fc.up.pt @198.41.0.4
+dig +norecurse www.dcc.fc.up.pt @204.61.216.105
+dig +norecurse www.dcc.fc.up.pt @193.137.55.33
+
+4.d.
+dig +trace www.dcc.fc.up.pt
+
+4.e.
+dig www.jn.pt
+
+4.f.
+4 endereços; 
+o primeiro da lista vai rodando.  
+Pelo facto de haver mais do que um, 
+obtemos tolerância a falhas.  
+Como as aplicações normalmente começam por usar o primeiro da lista, 
+obtemos também distribuição de carga.
+
+4.g.
+dig fc.up.pt MX
+
+4.h.
+O campo "id" é igual no pedido e na respectiva resposta, 
+mas é diferente em pedidos diferentes.
+Permite associar uma resposta a um pedido mesmo não havendo conexões 
+(o DNS funciona normalmente sobre UDP).
+
+5.
+5.a.
+O TTL vai diminuindo; 
+quando chega a zero é reposto no valor inicial e volta a diminuir.
+
+5.b.
+Neste caso o TTL tem sempre o mesmo valor.  
+O TTL define o tempo que resta em cache.  
+Quando o pedido é feito ao servidor com autoridade, 
+tem sempre o valor máximo.  
+Quando é feito a uma cache (servidor local) vai diminuindo; 
+quando chega a zero o servidor local consulta novamente o servidor com autoridade 
+e coloca em cache a resposta "fresca".
+
+6.
+6.a. Pedir os registos NS para a raiz (.)
+
+6.b. dig . NS
