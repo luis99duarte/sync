@@ -16,10 +16,14 @@ class TCPServer {
 
          clientSentence = inFromClient.readLine();
          
-         capitalizedSentence = clientSentence.toUpperCase() + '\n';
+         while(clientSentence != null) {
+            capitalizedSentence = clientSentence.toUpperCase() + '\n';
 
-         outToClient.writeBytes(capitalizedSentence);
-         
+            outToClient.writeBytes(capitalizedSentence);
+            
+            clientSentence = inFromClient.readLine();
+         }
+
          connectionSocket.close();
       }
    }
