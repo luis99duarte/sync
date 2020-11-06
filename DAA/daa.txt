@@ -1,0 +1,219 @@
+Ideia-chave: trocar elementos que estao fora de posicao
+Codigo para BubbleSort
+Fazer
+	existem trocas ← false
+	Para i ← 1 ate n − 1 fazer
+		Se v[i − 1] > v[i] ent˜ao
+			Trocar v[i − 1] com v[i]
+			existem trocas ← verdadeiro
+Enquanto (existem trocas)
+
+
+Melhorar nao indo sempre ate a ultima posicao
+Codigo para BubbleSort - v2
+Fazer
+	existem trocas ← false
+	Para i ← 1 ate n − 1 fazer
+		Se v[i − 1] > v[i] ent˜ao
+			Trocar v[i − 1] com v[i]
+			existem trocas ← verdadeiro
+	n − −
+Enquanto (existem trocas)
+
+Melhorar indo ate a ultima posicao em que houve troca
+Codigo para BubbleSort -v3 : : O(n^2)
+
+Fazer
+	ultima posicao ← 0
+	Para i ← 1 ate n − 1 fazer
+		Se v[i − 1] > v[i] entao
+			Trocar v[i − 1] com v[i]
+			ultima posicao ← i
+	n ← ultima posicao
+Enquanto (n > 0)
+------------------------------------------------------------------------------
+
+Ideia-chave: inserir cada elemento na sua posicao correta
+Codigo para InsertionSort: : O(n^2)
+Para i ← 1 ate n − 1 fazer
+	x ← v[i] (elemento que vamos inserir)	
+	j ← i
+	Enquanto j > 0 e v[j − 1] > x fazer
+		v[j] ← v[j − 1]
+		j − −
+	v[j] ← x
+
+--------------------------------------------------------------------------------
+
+Ideia-chave: escolher o minimo e colocar na posicao dele
+Codigo para SelectionSort: omega(n^2)
+Para i ← 0 ate n − 2 fazer
+	pos min ← i (posicao do menor elemento)
+	Para j ← i + 1 ate n − 1 fazer
+		Se v[j] < v[pos min] entao
+			pos min ← j
+	Trocar v[i] com v[pos min]
+
+---------------------------------------------------------------------------------
+
+Ideia-chave: Ordenar digito a digito
+Um possıvel RadixSort (comecando no digito menos significativo): O(k × n)
+bucket[10] ← array de listas de numeros (um por digito)
+Para pos ← 1 ate max numero digitos fazer
+	Para i ← 0 ate n − 1 fazer (para cada numero)
+		Colocar v[i] em bucket[digito posicao pos(v[i])]
+	Para i ← 0 ate 9 fazer (para cada digito possivel)
+		Enquanto tamanho(bucket[i]) > 0 fazer
+			Retirar 1º numero de bucket[i] e adiciona-lo a v[]
+
+-----------------------------------------------------------------------------------
+
+Ideia-chave: Contar numero de elementos de cada ”tamanho” 
+CountingSort: Vamos demorar O(n + k)
+conta[max tamanho] ← array para contagem
+Para i ← 0 ate n − 1 fazer
+	conta[v[i]] + + (mais um elemento v[i])
+i = 0
+Para j ← min tamanho ate max tamanho fazer
+	Enquanto conta[j] > 0 fazer
+		v[i] ← j (coloca elemento no array)
+		conta[j] − − (menos um elemento desse tamanho)
+		i + + (incrementa posicao a colocar no array)
+
+
+----------------------------------------------------------------------------------
+Problema: Pesquisar elementos em arrays ordenados
+Pesquisa Binaria - Θ(log n)
+Pesquisa binaria para condicao
+bsearch(low, high, condicao)
+	Enquanto (low < high ) fazer
+		middle ← low + (high − low)/2
+		Se (condicao(middle) = sim) high ← middle
+		Senao 			    low ← middle + 1
+	Se (condicao(low) = nao) retorna(-1)
+	retorna(low)
+-----------------------------------------------------------------------------------
+
+Fibonacci (a partir da definicao)
+fib(n):
+	Se n = 0 ou n = 1 entao
+		retorna n
+	Senao
+		retorna fib(n − 1) + fib(n − 2)
+
+------------------------------------------------------------------------------------
+
+I Comecar do zero e manter sempre em mem´oria os dois ultimos 
+numeros da sequencia
+
+Fibonacci (versao iterativa mais eficiente)
+fib(n):
+	Se n = 0 ou n = 1 ent˜ao
+		retorna n
+	Sen˜ao
+		f1 ← 1
+		f2 ← 0
+		Para i ← 2 ate n fazer
+			f ← f1 + f2
+			f2 ← f1
+			f1 ← f
+		retorna f
+
+-------------------------------------------------------------------------------------
+
+Piramide de Numeros (a partir da definicao recursiva)
+Max(i, j):
+	Se i = n entao
+		retorna P[i][j]
+	Sen˜ao
+		retorna P[i][j] + maximo (Max(i + 1, j), Max(i + 1, j + 1))
+
+Piramide de Numeros (solucao polinomial - O(n^2))
+Calcular():
+	Para i ← n − 1 ate 1 fazer
+		Para j ← 1 ate i fazer
+			P[i][j] ← P[i][j] + maximo (P[i + 1][j], P[i + 1][j + 1])
+
+--------------------------------------------------------------------------------------
+Calcular as solucoes de todos os subproblemas:
+”de tras para a frente”
+
+Subsequencia crescente (solucao polinomial - O(n^2))
+Calcular():
+	best[n] ← 1
+	Para i ← n − 1 ate 1 fazer
+		best[i] ← 1
+		Para j ← i + 1 ate n fazer
+			Se num[j] > num[i] e 1 + best[j] > best[i] entao
+				best[i] ← 1 + best[j]
+
+
+Problema do Troco (solucao polinomial - O(N × K))
+Calcular():
+	coins[0] ← 0
+	Para i ← 1 ate K fazer
+		coins[i] ← ∞
+		Para j ← 1 ate N fazer
+			Se (S[j] ≤ i e 1 + coins[i − S[j]] < coins[i] entao
+				coins[i] ← 1 + coins[i − S[j]]
+
+
+Obras na Estrada (solucao polinomial - O(L × C))
+Calcular():
+	Inicializar count[][] com zeros
+	count[L][C] ← 1
+	Para i ← L ate 1 fazer
+		Para j ← C ate 1 fazer
+			Se i < L e nao(obra(i, j, NORTE)) entao
+				count[i][j] ← count[i][j] + count[i + 1][j]
+			Se j < C e nao(obra(i, j, ESTE)) entao
+				count[i][j] ← count[i][j] + count[i][j + 1]
+
+
+Jogo de Pedras (solucao polinomial)
+Calcular():
+	Para i ← 0 ate N fazer
+	Se (i ≥ 1 e win[i − 1]=falso) ou
+	   (i ≥ 3 e win[i − 3]=falso) ou
+	   (i ≥ 8 e win[i − 8]=falso) entao
+		win[i] ← verdadeiro
+	Senao
+		win[i] ← falso
+
+Distancia de Edicao (solucao polinomial)
+Calcular():
+	Para i ← 0 ate |a| fazer de[i][0] ← i
+	Para j ← 0 ate |b| fazer de[0][j] ← j
+
+	Para i ← 1 ate |a| fazer
+		Para j ← 1 ate |j| fazer
+			Se (a[i] = b[j] entao valor ← 0
+			Senao valor ← 1
+			de[i][j] = minimo( de[i − 1][j − 1] + value,
+					    de[i − 1][j] + 1,
+					    de[i][j − 1] + 1)
+
+
+--------------------------------------------------------------------------------------
+Inserir numa arvore binaria de pesquisa
+insert(T, v):
+	Se Nulo(T) entao
+		devolver Novo No(v)
+	Senao se v < T.valor ent˜ao
+		devolver T.esquerdo = insert(T.esquerdo, v)
+	Senao se v > T.valor ent˜ao
+		devolver T.direito = insert(T.direito, v)
+	Senao
+		devolver T
+
+--------------------------------------------------------------------------------------
+MergeSort(arr[], l,  r)
+If r > l
+     1. Find the middle point to divide the array into two halves:  
+             middle m = (l+r)/2
+     2. Call mergeSort for first half:   
+             Call mergeSort(arr, l, m)
+     3. Call mergeSort for second half:
+             Call mergeSort(arr, m+1, r)
+     4. Merge the two halves sorted in step 2 and 3:
+             Call merge(arr, l, m, r)

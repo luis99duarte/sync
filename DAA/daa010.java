@@ -10,14 +10,14 @@ public class daa010 {
             int s[] = new int[n];
 
             for(int i = 0; i < n; i++) {
-                s[i] = in.nexInt();
+                s[i] = in.nextInt();
             }
 
             int q = in.nextInt();
             int p[] = new int[q];
         
             for(int i = 0; i < q; i++) {
-                q[i] = in.nextInt();
+                p[i] = in.nextInt();
             }
 
             int v[] = new int[n* (n - 1) / 2];
@@ -30,7 +30,27 @@ public class daa010 {
 
             Arrays.sort(v);
 
-
         }
+    }
+
+    public static int[] binarysearch(int[] v, int low, int high, int key) {
+        while(low <= high) {
+            int middle = low + (high - low) / 2;
+            
+            if(key == v[middle]) {
+                return middle;
+            }
+
+            if(key < v[middle]) {
+                high = middle - 1;
+            }
+
+            else {
+                low = middle + 1;
+            }
+        }
+
+        // POR COMPLETAR
+        
     }
 }
