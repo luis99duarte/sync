@@ -217,3 +217,303 @@ If r > l
              Call mergeSort(arr, m+1, r)
      4. Merge the two halves sorted in step 2 and 3:
              Call merge(arr, l, m, r)
+
+--------------------------------------------------------------------------------------
+
+class ADN implements Comparable<ADN> {
+    int frequency;
+    int position;
+    char letter;
+
+    ADN(char c) {
+        frequency = 0;
+        position = -1;
+        letter = c;
+    }
+
+    @Override
+    public int compareTo(ADN l) {
+        if(this.frequency < l.frequency) return +1;
+        if(this.frequency > l.frequency) return -1;
+        if(this.position < l.position) return -1;
+        if(this.position > l.position) return +1;
+        return 0;
+    }
+}
+
+public class daa009 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        String s = in.next();
+
+        ADN a[] = new ADN[26];
+
+        for(int i = 0; i < 26; i++) {
+            char c = (char) ('A' + i);
+            ADN l = new ADN(c);
+            a[i] = l;
+        }
+
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if(a[c - 'A'].position == -1) {
+                a[c - 'A'].position = i;
+            }
+
+                a[c - 'A'].frequency++;
+        }
+
+        Arrays.sort(a);
+
+        for(int i = 0; i < 26; i++) {
+            if(a[i].frequency > 0) {
+                System.out.println(a[i].letter + " " + a[i].frequency);
+            }
+        }
+    }
+}
+
+--------------------------------------------------------------------------------------
+
+public class daa011 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        int n = in.nextInt();
+        int d[] = new int[n];
+
+        int high = 0;
+
+        for(int i = 0; i < n; i++) {
+            d[i] = in.nextInt();
+
+            high += d[i];
+        }
+
+        int p = in.nextInt();
+        int k[] = new int[p];
+
+        for(int i = 0; i < p; i++) {
+            
+            k[i] = in.nextInt();            
+        }
+
+        for(int i = 0; i < p; i++) {
+            System.out.println(binarysearch(d, 1, high, k[i]));
+        }
+    }
+
+    public static int binarysearch(int d[], int low, int high, int k) {
+        while(low < high) {
+            int middle = low + (high - low) / 2;
+
+            if(possible(d, k, middle)) {
+                high = middle;
+            }
+
+            else {
+                low = middle + 1;
+            }
+        }    
+
+        if(possible(d, k, high)) {
+             return low;
+        }
+
+        return -1;
+    }
+
+    public static boolean possible(int d[], int k, int max) {
+        int partition = 1;
+        int sum = 0;
+
+        for(int i = 0; i < d.length; i++) {
+            if(d[i] > max) {
+                return false;
+            }
+
+            if(d[i] + sum > max) {
+                partition++;
+                sum = 0;
+            }
+
+            sum += d[i];
+        }
+
+        if(partition > k) {
+            return false;
+        }
+
+        return true;
+    }
+}
+
+--------------------------------------------------------------------------------------
+
+// Descobrir o menor numero de segmentos possivel que completem o intervalo 
+// Ordenar primeiro pela 
+
+import java.util.*;
+
+class Segment implements Comparable<Segment> {
+    int r;
+    int l;
+
+    Segment(int r, int l) {
+        this.r = r;
+        this.l = l;
+    }
+
+    @Override
+    public int compareTo(Segment s) {
+        if(this.l < s.l) {
+            return -1;
+        }
+
+        if(this.l > s.l) {
+            return +1;
+        }
+
+        if(this.r > s.r) {
+            return -1;
+        }
+
+        if(this.r < s.r) {
+            return +1;
+        }
+
+        return 0;
+    }
+}
+
+public class daa013 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        int M = in.nextInt();
+        int N = in.nextInt();
+
+        Segment[] a = new Segment[N];
+
+        for(int i = 0; i < N; i++) {
+            int l = in.nextInt();
+            int r = in.nextInt();
+
+            Segment s = new Segment(r, l);
+
+            a[i] = s;
+        }
+
+        Arrays.sort(a);
+
+
+        System.out.println(count(a, M));
+    }
+
+    public static int count(Segment[] S, int M) {
+        int end = 0;
+        int count = 0;
+        int index = 0;
+
+        while(end < M) {
+            index = endIndex(S, end);
+
+            end = S[index].r;  
+            count++;
+        }
+
+        return count;
+    }
+
+    public static int endIndex(Segment[] S, int end) {
+        int reach = 0;
+        int index = 0;
+
+        for(int i = 0; i < S.length; i++) {
+            if(S[i].l <= end && S[i].r > reach) {
+                reach = S[i].r;
+                index = i;
+            }
+        }
+        
+        return index;
+    }
+}
+
+--------------------------------------------------------------------------------------
+
+// Knapsack é necessário fazer divisão que define prioridade
+
+import java.util.*;
+
+class order implements Comparable<order> {
+    int id;
+    int d;
+    int m;
+    float p;
+
+    order (int id, int d, int m) {
+        this.id = id;
+        this.d = d;
+        this.m = m;
+        this.p = (float)m / (float)d;
+    }
+
+    @Override
+    public int compareTo(order o) {
+        if(this.p > o.p) {
+            return -1;
+        }
+
+        if(this.p < o.p) {
+            return +1;
+        }
+
+        if(this.id < o.id) {
+            return -1;
+        }
+
+        if(this.id > o.id) {
+            return +1;
+        }
+
+        return 0;
+    }
+}
+
+public class daa014 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        int N = in.nextInt();
+
+        order a[] = new order[N];
+
+        for(int i = 0; i < N; i++) {
+            int d = in.nextInt();
+            int m = in.nextInt();
+
+            order p = new order(i + 1, d, m);
+            a[i] = p;
+        }
+
+        Arrays.sort(a);
+
+        /*Teste
+        for(int i = 0; i < N; i++) {
+            System.out.println(a[i].id + " " + a[i].d + " " + a[i].m);
+        }*/
+
+        for(int i = 0; i< N; i++) {
+            if(i == N - 1) {
+                System.out.println(a[i].id);
+            }
+            else {
+                System.out.print(a[i].id + " ");
+            }
+        }
+        
+    }
+}

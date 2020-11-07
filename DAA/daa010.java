@@ -22,17 +22,19 @@ public class daa010 {
 
             int v[] = new int[n* (n - 1) / 2];
 
+            Arrays.sort(s);
+
             for(int i = 0; i < n; i++) {
                 for(int j = i + 1; j < n; j++) {
                     v[j] = s[i] + s[j];
+                    System.out.println(v[j]);
                 }
             }
 
             Arrays.sort(v);
-
         }
     }
-
+/*
     public static int[] binarysearch(int[] v, int low, int high, int key) {
         while(low <= high) {
             int middle = low + (high - low) / 2;
@@ -52,5 +54,5 @@ public class daa010 {
 
         // POR COMPLETAR
         
-    }
+    }*/
 }
