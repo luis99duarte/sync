@@ -34,8 +34,6 @@ public class daa026 {
         int N = in.nextInt();
         String petri;
 
-        
-
         for(int i = 0; i < N; i++) {
             Rows = in.nextInt();
             Columns = in.nextInt();
