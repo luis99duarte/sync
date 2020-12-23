@@ -1,0 +1,469 @@
+SUBMIT FOR TEST
+
+DFS (versao recursiva)
+dfs(no v):
+marcar v como visitado
+Para todos os nos w adjacentes a v fazer
+Se w ainda nao foi visitado entao
+dfs(w)
+
+
+Descobrir componentes conexos
+contador ← 0
+marcar todos os nos como nao visitados
+Para todos os nos v do grafo fazer
+Se v ainda nao foi visitado entao
+contador ← contador + 1
+dfs(v)
+escrever(contador)
+
+Algoritmo para testar se um grafo e bipartido
+Fazer um dfs a partir de um no u e colorir esse no com uma cor
+Para cada no w vizinho de u:
+Se w nao foi visitado, fazer dfs(w) e pintar w com cor diferente de v
+Se w ja foi visitado, verificar se cor e diferente
+I Se cor for igual, grafo nao e bipartido!
+
+Ordena¸cao Topologica - O(|V| + |E|) (lista) ou O(|V|
+2
+) (matriz)
+ordem ← lista vazia
+marcar todos os nos como nao visitados
+Para todos os nos v do grafo fazer
+Se v ainda nao foi visitado entao
+dfs(v)
+escrever(ordem)
+dfs(no v):
+marcar v como visitado
+Para todos os nos w adjacentes a v fazer
+Se w ainda nao foi visitado entao
+dfs(w)
+adicionar v ao inıcio da lista ordem
+
+
+Esqueleto da Pesquisa em Largura - O(V+E)
+bfs(no v):
+q ← ∅ /* Fila de nos nao visitados */
+q.enqueue(v)
+marcar v como visitado
+Enquanto q 6= ∅ /* Enquanto existirem nos por processar */
+u ← q.dequeue() /* Retirar primeiro elemento de q */
+Para todos os nos w adjacentes a u fazer
+Se w ainda nao foi visitado entao /* Novo no! */
+q.enqueue(w)
+marcar w como visitado
+
+
+
+
+
+
+
+import java.util.*;
+
+public class daa025 {
+    public static int n;              // Numero de nos do grafo
+    public static boolean adj[][];    // Matriz de adjacencias
+    public static boolean visited[];  // Que nos ja foram visitados?
+
+    public static void dfs(int v) {
+        visited[v] = true;
+    
+	    for (int i = 1; i <= n; i++) {
+	        if (adj[v][i] && !visited[i]) {
+                dfs(i);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        n = in.nextInt();
+
+        adj = new boolean[n + 1][n + 1];
+        visited = new boolean[n + 1];
+        
+        int L = in.nextInt();
+
+        int count = 0;
+
+        for(int i = 0; i < L; i++) {
+            int a = in.nextInt();
+            int b = in.nextInt();
+
+            adj[a][b] = adj[b][a] = true;
+        }
+
+        for(int i = 1; i <= n; i++) {
+            if(!visited[i]) {
+                dfs(i);
+                count++;
+            }
+        }
+
+        System.out.println(count);
+    }
+}
+
+
+
+
+import java.util.*;
+
+public class daa026 {
+    static boolean visited[][];
+    static int Rows;
+    static int Columns;
+    static char array[][];
+    static int size;
+
+    public static void dfs(int R, int C) {
+        if(C < 0 || R < 0 || C > Columns || R > Rows) {
+            return;
+        }
+
+        if(visited[R][C] || array[R][C] != '#') {
+            return;
+        }
+
+        visited[R][C] = true;
+        size++;
+        dfs(R + 1, C);
+        dfs(R - 1, C);
+        dfs(R, C + 1);
+        dfs(R, C - 1);
+        dfs(R + 1, C + 1);
+        dfs(R - 1, C + 1);
+        dfs(R - 1, C - 1);
+        dfs(R + 1, C - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        int N = in.nextInt();
+        String petri;
+
+        for(int i = 0; i < N; i++) {
+            Rows = in.nextInt();
+            Columns = in.nextInt();
+
+            visited = new boolean[Rows + 1][Columns + 1];
+            
+            array = new char[Rows + 1][Columns + 1];
+
+            for(int l = 1; l <= Rows; l++) {
+                petri = in.next();      // input dos caracteres todos
+
+                for(int c = 1; c <= Columns; c++) {
+                    array[l][c] = petri.charAt(c - 1);
+                }
+            }
+
+            int max = 0;
+
+            for(int l = 1; l <= Rows; l++) {
+                for(int c = 1; c <= Columns; c++) {
+                    size = 0;
+                    dfs(l, c);
+
+                    if(size > max) {
+                        max = size;
+                    }
+                }
+            }
+
+            System.out.println(max);
+        }
+    }
+}
+
+
+
+import java.util.*;
+
+public class daa027 {
+    static int N;       // casos a considerar
+    static int V;       // número de nós
+    static int E;       // número de arestas
+
+    static boolean visited[];
+    static boolean adj[][];
+
+    static int color[];
+    static boolean check;
+
+    public static void dfs(int node, int c) {
+        if(!visited[node]) {
+            visited[node] = true;
+            color[node] = c;
+
+            int newColor;
+
+            if(color[node] == 0) {
+                newColor = 1;
+            }
+
+            else {
+                newColor = 0;
+            }
+
+            for(int i = 0; i < V; i++) {
+                if(adj[node][i]) {
+                    dfs(i, newColor);
+                }
+            }
+        }
+
+        else if(c != color[node]) {
+            check = false;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        N = in.nextInt();
+
+        for(int i = 1; i <= N; i++) {
+
+            V = in.nextInt();
+            E = in.nextInt();
+
+            visited = new boolean[V + 1];
+            adj = new boolean[V + 1][V + 1];
+            color = new int[V + 1];
+
+            for(int j = 0; j < E; j++) {       // número de ligações (input)
+                int a = in.nextInt();
+                int b = in.nextInt();
+
+                adj[a][b] = adj[b][a] = true;    
+            }
+
+            check = true;
+            dfs(1, 0);
+
+            if(!check) {
+                System.out.println("nao");
+            }
+
+            else {
+                System.out.println("sim");
+            }
+        }
+    }
+}
+
+
+
+import java.util.*;
+
+public class daa029 {
+    static LinkedList<Integer> order = new LinkedList<Integer>();
+    static boolean adj[][] = new boolean[26][26];
+    static boolean visited[] = new boolean[26];
+
+    public static void dfs(int node){
+        visited[node] = true;
+
+        for(int i = 0; i < 26; i++) {
+            if(adj[node][i] && !visited[i]) {
+                dfs(i);
+            }
+        }
+
+        order.addFirst(node);
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        int N = in.nextInt();
+
+        boolean used[] = new boolean[26];
+
+        String first = in.next();
+
+        for(int i = 1; i < N; i++) {
+            String second = in.next();
+
+            for(int j = 0; j < first.length() && j < second.length(); j++) {
+                if(first.charAt(j) != second.charAt(j)) {
+                    int A = first.charAt(j) - 'A';
+                    int B = second.charAt(j) - 'A';
+
+                    adj[A][B] = true;
+
+                    used[A] = true;
+                    used[B] = true;
+
+                    break;
+                }
+            }
+
+            first = second;
+        }
+
+        for(int i = 0; i < 26; i++) {
+            if(!visited[i] && used[i]) {
+                dfs(i);
+            }
+        }
+
+        int orderLength = order.size();
+
+        for(int i = 0; i < orderLength; i++) {
+            System.out.print((char)('A' + order.remove()));
+        }
+        System.out.println();
+    }
+}
+
+/////////////////////////////////////////////////////////////////
+
+// Exemplo de pesquisa em largura (BFS) num grafo nao dirigido
+// (similar ao codigo feito na teorica - inclui calculo de distancias)
+
+import java.io.*;
+import java.util.*;
+
+// Classe que representa um no
+class Node {
+    public LinkedList<Integer> adj; // Lista de adjacencias
+    public boolean visited;         // Valor booleano que indica se foi visitado numa pesquisa
+    public int distance;            // Distancia ao no origem da pesquisa
+
+    Node() {
+		adj = new LinkedList<Integer>();
+    }
+}
+
+// Classe que representa um grafo
+class Graph {
+    int n;           // Numero de nos do grafo
+    Node nodes[];    // Array para conter os nos
+
+    Graph(int n) {
+		this.n = n;
+		nodes  = new Node[n+1]; // +1 se nos comecam em 1 ao inves de 0
+		for (int i=1; i<=n; i++) {
+			nodes[i] = new Node();
+		}
+    }
+
+    public void addLink(int a, int b) {
+		nodes[a].adj.add(b);
+		nodes[b].adj.add(a);
+    }
+
+    // Algoritmo de pesquisa em largura 
+    //dssa versao retorna a distancia max ate cada no
+    public int bfs(int v) {
+		LinkedList<Integer> q = new LinkedList<Integer>();
+		for (int i=1; i<=n; i++) {
+			nodes[i].visited = false;
+		}
+        int max = -1;//add
+		q.add(v);
+		nodes[v].visited = true;
+		nodes[v].distance = 0;
+
+		while (q.size() > 0) {
+	    	int u = q.removeFirst();
+	    	//System.out.println(u + " [dist=" + nodes[u].distance + "]");
+	    	for (int w : nodes[u].adj) {
+				if (!nodes[w].visited) {
+		    		q.add(w);
+		    		nodes[w].visited  = true;
+                    nodes[w].distance = nodes[u].distance + 1;
+                    //add
+                    if(nodes[w].distance > max) {
+                        max = nodes[w].distance; 
+                    }
+				} 
+			}	    
+        }
+        return max;
+    }
+}
+/*
+public class BFS {
+    public static void main(String args[]) {
+		Scanner in = new Scanner(System.in);
+
+		Graph g = new Graph(in.nextInt());
+		int   e = in.nextInt();
+		for (int i=0; i<e; i++) { 
+	    	g.addLink(in.nextInt(), in.nextInt());
+		}
+		
+		// Pesquisa em largura a partir do no 1
+		g.bfs(1);
+		in.close();		
+    }
+}
+*/
+public class DAA30ex {
+    static int n;//nos
+    static int e;//arestas
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        n = input.nextInt();
+        Graph g = new Graph(n+1);
+        int[] maxDist = new int[n+1];//distancia max ate cada no (1-9)
+        e = input.nextInt(); 
+        
+        for(int i = 0; i < e; i++) {
+            g.addLink(input.nextInt(), input.nextInt());
+        }
+
+        int diameter = Integer.MIN_VALUE;//max
+        int radius = Integer.MAX_VALUE;//min
+        
+        for(int i = 1; i <= n; i++) {
+            int result = g.bfs(i);
+            maxDist[i] = result;
+            if(result > diameter) {
+                diameter = result;
+            }
+            if(result < radius) {
+                radius = result;
+            }
+        }
+
+        System.out.println(diameter);
+        System.out.println(radius);
+
+        int check = 0;
+        /* verificaçao se ha mais q um no de dist iguais */
+        for(int i = 1; i <= n; i++) {
+            if(maxDist[i] == radius) {
+                if(check == 0) {
+                    check = 1;
+                    System.out.print(i);
+                }
+                else {
+                    System.out.print(" " + i);
+                }
+            }
+        }
+        System.out.println();
+        
+        check = 0;//reset p max
+        for(int i = 1; i <= n; i++) {
+            if(maxDist[i] == diameter) { // neste max ja tem o max atual
+                if(check == 0) {
+                    check = 1;
+                    System.out.print(i);
+                }
+                else {
+                    System.out.print(" " + i);
+                }
+            }
+        }
+        System.out.println();        
+        input.close();
+    }
+}
