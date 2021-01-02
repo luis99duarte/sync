@@ -1,0 +1,197 @@
+Grupo 1
+1.1 
+    n^4 = O(4^n)
+    2^n = Theta(2^(n+2))
+    42 = Theta(24)
+    log(log n^2) = O(log n^2)
+    sqrt(n) = Omega(log4 n)
+
+1.2
+    x = 1s
+    3x = ?
+
+    linear -> 3s
+    linearítmica -> 3n*log(3n) = log(27)s       (n*log(n))
+    quadrática -> (3n)^2 = 9n^2 = 9s
+    cúbica -> (3n)^3 = 27s
+
+1.3
+    a)
+        v[0]
+        m1 + m2
+
+    b)
+        T(1) = O(1)
+        T(n) = D(n) + 2T(n/2) + S(n)
+        T(n=) = O(1) + 2T(n/2) + O(1)
+
+        D(n) = O(1)     Tempo da divisão das partes
+        S(n) = O(1)     Tempo da soma das partes
+
+    c)
+        O(n)
+
+
+Grupo 2
+2.1
+    Complexidade Temporar = O(n^2)
+    Percorrer o array "a", onde iremos agrupar num outro array de frequências "aFreq" as ocorrências de cada valor do array "a"
+    Por fim vamos percorrer o array "aFreq" e para cada index cujo valor seja maior que 0 escrevemos o index
+    
+2.2
+    public static int bynarySearch(int[] array, int low, int high, int key) {
+        while(low <= high) {
+            int middle = low + (high - low) / 2;
+            
+            if(array[m] == key) {
+                return m;
+            }
+
+            if(array[m] > key) {
+                low = m + 1;
+            }
+
+            else{
+                high = m - 1;
+            }
+        }
+
+        return -1;
+    }
+
+2.3
+    uma raiz de uma dada função
+    [a,a + (b - a) / 2]
+    [a + (b - a) / 2, b]
+    f(a) tem sinal oposto a f(a + (b - a) / 2)
+    (b- a) / 2 ^ n
+
+
+Grupo 3
+3.1
+    b)
+        5 moedas    100 + 20 + 20 + 2 + 1 = 143
+
+    c)
+        S = {1, 10, 25}
+        K = 40
+
+        Um algoritmo greedy diz que a melhor forma para ter 40 era com 25 + 10 + 1 + 1 + 1 + 1 + 1 (7 moedas), quando na realidade
+        podíamos usar apenas 10 + 10 + 10 + 10 (4 moedas).
+
+3.2
+    a)
+        |XXXXXXXXXXXXXXXXXXXX                                     
+        |
+        |   ####
+        |           ####
+        |                  ##
+        | _ _ _ _ _ _ _ _ _ _ 
+
+        Dá como output 1, conjunto de X por ter começado no início
+        Devia dar como output 3 que são os conjuntos #
+
+        |       XXXXXX
+        |   
+        |
+        | #########
+        |           #########
+        | _ _ _ _ _ _ _ _ _ _ 
+
+        Dá como output 1, conjunto de X por ter começado no início
+        Devia dar como output 3 que são os conjuntos #
+
+    b) 
+        [Fim mais cedo]
+
+
+Grupo 4
+4.1
+    a)
+        2 ^ (n - 1) Sendo n o número de linhas
+        2 ^ 4 = 16
+        A cada posição temos 2 escolhas e temos n - 1 níveis em que podemos escolher
+
+    b)
+        m(x, y) = m(x + 1, y) + m(x + 1, y + 1)
+
+        m[0][0]
+
+        10
+
+
+Grupo 5
+5.1 
+    É uma árvore binária de pesquisa que garante que para cada nó da árvore, a altura da subárvore da esquerda e da subárvore da
+    direita diferem no máximo em uma unidade(invariante de altura).
+    As propriedades são mantidas através de rotações para a direita ou para a esquerda seguida para a direita
+    Complexidade temporal de inserção: O(log n)
+    Complexidade temporal de remoção: O(log n)
+    Complexidade temporal de pesquisa: O(log n)
+
+5.2
+    No pior caso as árvores AVL são um pouco mais balanceadas que as RB
+    AVL mais rápida a pesquisar
+    AVL mais lentasa inserir e a remover do que as RB
+    RB ocupam um pouco menos de memória, visto que só precisam da cor e as AVL precisam do desnível
+
+
+Grupo 6
+6.1
+    O diâmetro de um grafo é a distância máxima entre dois nós do grafo
+    A distância é o menor caminho entre dois nós do grafo
+
+    | A-----B-----C-----D   Grafo de diâmetro 3
+    | |     |     |     |
+    | |     |     |     |
+    | |-----E     F-----|
+    | _ _ _ _ _ _ _ _ _ _
+
+6.2
+    LISTA
+    MATRIZ
+    MATRIZ
+    LISTA
+
+Grupo 7
+7.1
+    a)
+        Profundidade:   G D C B A F E H
+        Largura:        G D F C H A E B
+
+7.2
+    1) C B A G F D E H
+    2) G C B A D F E H
+
+7.3
+    Nºs CFCs: 2
+              A: T
+              B: T
+              C: F
+              D: F
+              E: T
+              F: F
+              G: F
+              H: F
+
+    Nós de cada CFC: 
+    A E
+    B F G C D H
+
+7.4
+    public static int count = 0;
+
+    public static int dfs(int v, int[][] G) {
+        visited[v] = true;
+        count++;
+
+        for(int i = 1; i <= n; i++) {
+            if(G[v][i] && !visited[i]) {
+                dfs(i);
+            }
+        }
+        return count;
+    }
+
+7.5
+    
