@@ -195,3 +195,50 @@ Grupo 7
 
 7.5
     
+
+Grupo 8
+8.1
+    a) 
+                 A  B  C  D  E  F
+Inicializ  _  _  ∞  ∞  ∞  ∞  ∞  ∞
+        1  A  _  0  4  ∞  ∞  10  ∞  
+        2  B  A  0  4  29  ∞  10  ∞
+        3  E  A  0  4  29  ∞  10  25
+        4  F  E  0  4  29  ∞  10  25
+        5  C  B  0  4  29  48  10  25
+
+    b)
+        48
+        A -> B -> C -> D
+
+    c)
+        O(E log(v))
+
+8.2
+    a)
+        |v| - 1
+        Se u.dist + peso(u, v) < v.dist então
+        v.dist <- u.dist + peso(u, v)
+
+    b)
+
+
+Grupo 9
+9.1
+    a)
+        B 4
+        E 2
+        C 1
+        F 3
+        D 6                         VERIFICAR ALGORITMO DE PRIM!
+    
+    b)
+        16
+
+
+Grupo 10
+10.1
+    a)
+        COMO ESCOLHER O CAMINHO DE AUMENTO? HÁ ALGUMA RESTRIÇÃO?
+        Basta um caminho que percorra o que queremos? 
+        Ou deve ser o caminho no qual gastamos mais capacidade?
