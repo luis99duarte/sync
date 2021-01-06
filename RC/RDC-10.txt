@@ -1,0 +1,39 @@
+1.
+    a)
+        Vantagem: Convergência mais rápida, por não sofrer do problema de contagem até ao infinito
+        Desvantagem: Todos os nós tem de saber tudo sobre o estado atual da rede
+    
+    b)             B      C       D       E       F       G    
+        0   A      3,A    2,A     5,A     
+        1   C      3,A            4,C             5,C
+        2   B                     4,C             5,C
+        3   D                                             9,D
+        4   F                             12,F            7,F
+        5   G                             12,F
+        
+
+        ACBDFGE
+    
+    c)
+        D   | Próximo
+        A   |   -
+        B   |   B
+        C   |   C
+        D   |   C
+        E   |   C
+        F   |   C
+        G   |   C
+
+    d)
+        OSPF
+
+2.
+    a)
+        Vantagem: cada router só precisa de conhecer os seus visinhos
+        Desvantagem: convergência mais lenta
+
+    b)
+        (boa sorte)
+
+3.
+    (BOA SORTE)

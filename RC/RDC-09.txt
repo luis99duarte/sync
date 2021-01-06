@@ -1,0 +1,123 @@
+1.
+    DHCP -> Dynamic Host Configuration Protocol
+    IP de origem: 0.0.0.0 - significa que o terminal que se juntou à rede, não tem ainda um IP 
+    definido nessa mesma rede.
+    IP de destino: 255.255.255.255 - significa que o terminal está a tentar comunicar-se com
+    toda a subrede de forma a encontrar pelo menos um servidor DHCP.
+
+2.
+    a)
+        A - 10 máquinas
+        B - 19 máquinas
+        C - 71 máquinas
+        D - 37 máquinas
+        Total de máquinhas = 19 + 19 + 71 + 37 = 137 máquinas
+
+        Classe C - 24 bits de prefixo
+        Departamento - 26 bits de prefixo (24 + 2)
+
+        32 - 26 = 6, temos 6 bits para hosts
+        2^6 = 64 hosts 
+        Endereços acessáveis = Endereços disponíveis - Endereços especiais  (IP de origem e IP de destino)
+        64 - 2 = 62 endereços acessáveis
+        
+        Sabemos que cada sub-rede precisa de dois endereços extra, um para identificar a rede e outro para
+        o endereço de broadcast. Por exemplo, se um departamento precisa de 10 endereços, na prática
+        precisam de ser alocados em 12.
+
+        Dep C: 71 máquinas: 192.136.37.0/25
+        - Máscara: 255.255.255.128
+        - Broadcast: 192.136.37.127
+        - IP range: 192.136.37.1 - 192.136.37.126
+        
+        Dep D: 37 máquinas: 192.136.37.128/26
+        - Máscara: 255.255.255.192
+        - Broadcast: 255.255.255.255 - 255.255.255.192 + 192.136.37.128 = 0.0.0.63 + 192.136.37.128 =
+                     = 192.136.37.191
+        - IP range: 192.136.37.129 - 192.136.37.190
+
+        Dep B: 19 máquinas: 192.136.37.192/27
+        - Máscara: 255.255.255.224
+                   11111111.1111111.1111111.11100000 32+64+128
+        - Broadcast: 255.255.255.255 - 255.255.255.224 + 192.136.37.192 = 0.0.0.31 + 192.136.37.192 =
+                     = 192.136.37.223
+        - IP range: 192.136.37.193 - 192.136.37.222
+
+        Dep A: 10 máquinas: 192.136.37.224/27
+        - Máscara: 255.255.255.224
+        - Broadcast: 192.136.37.255
+        - IP range: 192.136.37.225 - 192.137.37.254
+    
+    b)
+        Rota específica para uma máquina (host-specific)
+
+    c)
+        2 bits que permitem, 2 ^ 2 = 4
+        2 bits para a rede e o broadcast e outros 2 para terminais/routers distintos
+
+3.
+    a)
+        Computador na rede doméstica: 192.168.1.23
+        Interface interna do router NAT: N/A
+        Interface externa do router NAT: 89.155.236.7
+        Servidor web na internet: 193.136.39.12
+
+    b)
+        Internet:
+            Porta de Origem: 80
+            Porta de Destino: 62318
+            IP de Origem: 193.136.39.12
+            IP de Destino: 89.155.236.7
+        
+        Rede Doméstica:
+            Porta de Origem: 80
+            Porta de Destino: 33516
+            IP de Origem: 193.136.39.12
+            IP de Destino: 192.168.1.23
+
+    c)
+        Port forwarding da port 80 para port 80 do endereço IP interno (privado) do servidor
+    
+    d)
+        Se eu quisesse pôr outros serviços a correr nesse servidor seria necessário mais entradas
+        de port forwarding.
+
+    e)
+        Sim, mas externamente teria que ser visto numa porta diferente
+    
+4.
+    Normalmente um datagrama IPv6 é encapsulado numa trama da camada de ligação de dados, ficando
+    no campo de dados dessa trama. Ao encapsular em IPv4, fica também no campo de dados do 
+    datagrama IPv4, funcionando o túnel com uma ligação (de dados) virtual entre os endereços IP de 
+    origem do datagram IPv4.
+
+5.
+    a)
+        Com o cliente na rede interna é criada uma entrada (dinâmica) na tabela de NAT quando
+        sai o primeiro paco. COm o servidor na rede interna, quando chega o primeiro pacote não se sabe
+        para que máquina da rede interna deve ser reenviado a menos que previamente se tenha
+        criado uma entrada estática na tabela de NAT (port forwarding).
+    
+    b)
+        Porque nós peer-to-peer funcionam simultaneamente como clientes e como clientes e como 
+        servidores. Para sulocionar, podem criar-se manualmente entradas de port furwarding, usar 
+        UPnP (ou outro mecanismo similar) para automatizar este processo, ou usar um nó na rede
+        pública (Internet) que funcione como intermediário.
+
+6.
+    a)
+        São endereços que nunca podem circular na internetmpública e, por isso, podem ser usados
+        em redes privadas (isoladas ou por trás de um NAT) sem consumir endereços IP públicos
+        (escassos) nem problemas de duplicação.
+
+    b)
+        IR AO GOOGLE
+    
+    c) 
+        Através de um NAT que traduz o endereço privado para um público (pertencente ao router NAT).
+
+    d)
+        Que tem prefixo de 24 bits de comprimento, ficando os restantes 8 para a identificação do host.
+
+    
+        
