@@ -1,0 +1,3 @@
+- Maior número representável em IEEE754 não normalizado
+- Escolher o tpio de round to the nearest mais adequado (cortar mantissa e expoentes)
+- 
