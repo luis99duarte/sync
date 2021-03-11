@@ -1,0 +1,12 @@
+Variáveis de decisão:
+x = número de vídeos com duas cabeças de leitura
+y = número de vídeos com quatro cabeças de leitura
+
+Restrições:
+5x + 6y <= 600
+1x + 2y <= 160
+x, y >= 0
+
+
+Objetivo:
+Maximizar l = 32x + 8y + xy - x^2/2 + y^2

@@ -1,0 +1,15 @@
+Variáveis de decisão:
+a = Toneladas de produto comprado à fábrica A
+b = Toneladas de produto comprado à fábrica B
+
+Restrições:
+a + b <= 5 Toneladas
+a <= 3 Toneladas
+a, b, >= 0 (Não há toneladas negativas)
+
+
+Objetivos:
+Maximizar l = 4a + 3.5b
+
+4*a (4 é o lucro por cada tonelada)
+3.5*b (3.5 é o lucro por cada tonelada)

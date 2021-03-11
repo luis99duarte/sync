@@ -1,0 +1,18 @@
+Variáveis de decisão:
+bife
+frango
+peixe
+hamburguer
+macarrão
+empada
+esparguete
+peru
+
+Restrições:
+60*bife + 8*frango + 8*peixe + 40*hamburguer + 15*macarrão + 70*empada + 25*esparguete + 60*peru >= 700
+20*bife + 0*frango + 10*peixe + 40*hamburguer + 35*macarrão + 30*empada + 50*esparguete + 20*peru >= 700
+10*bife + 20*frango + 15*peixe + 35*hamburguer + 15*macarrão + 15*empada + 25*esparguete + 15*peru >= 700
+15*bife + 20*frango + 10*peixe + 10*hamburguer + 15*macarrão + 15*empada + 15*esparguete + 10*peru >= 700
+
+Objetivo:
+minimizar p = 319*bife + 259*frango + 229*peixe + 289*hamburguer + 189*macarrão + 199*empada + 199*esparguete + 249*peru
