@@ -1,0 +1,87 @@
+4. c)
+    194.117.24.32
+    194/2 = 97      0
+    97/2 = 48       1
+    48/2 = 24       0
+    24/2 = 12       0
+    12/2 = 6        0
+    6/2 = 3         0
+    3/2 = 1         1
+    1/2 = 0         1
+
+    11000010.01110101.00011000.00100000
+
+    194.117.24.32 & 255.255.255.255
+
+    11000010.01110101.00011000.00100000
+ &  11111111.11111111.11111111.11111111
+    11000010.01110101.00011000.00100000
+
+    destination = 192.168.5.20 = 11000000.10101000.00000101.00010100
+
+    11000010.01110101.00011000.00100000 == 11000000.10101000.00000101.00010100? não
+
+
+    194.117.24.32 & 255.255.255.128
+
+    11000010.01110101.00011000.00100000
+ &  11111111.11111111.11111111.10000000
+    11000010.01110101.00011000.00000000
+
+    destination = 192.168.1.0 = 11000000.101010000.00000001.00000000
+
+    11000010.01110101.00011000.00000000 == 11000000.101010000.00000001.00000000? não
+
+
+    194.117.24.32 & 255.255.255.0
+
+    11000010.01110101.00011000.00100000
+ &  11111111.11111111.11111111.00000000
+    11000010.01110101.00011000.00000000
+
+    destination = 192.168.10.0 = 11000000.101010000.00001010.0000000
+
+    11000010.01110101.00011000.00000000 == 11000000.101010000.00001010.0000000? não
+
+
+    194.117.24.32 & 255.255.254.0
+
+    11000010.01110101.00011000.00100000
+ &  11111111.11111111.11111110.00000000
+    11000010.01110101.00011000.00000000
+
+    192.168.0.0 = 11000000.10101000.00000000.00000000
+
+    11000010.01110101.00011000.00000000 == 11000000.10101000.00000000.00000000? não
+
+
+    194.117.24.32 & 255.255.192.0
+
+    11000010.01110101.00011000.00100000
+ &  11111111.11111111.11000000.00000000
+    11000010.01110101.00000000.00000000
+
+    192.168.64.0
+
+
+192.168.10.0/23
+192.168.18.0/23
+10.0.0.0/7
+127.0.0.0/8
+
+rota default, encaixa em todos os IPs
+
+loopback, serve para permitir uma comunicação TCP/IP entre programas a correr na mesma máquina, mesmo que esteja desligada da rede
+
+A rede tenta entregar os pacotes, sem qualquer garantia do que pode acontecer (podem perder-se, ser entregues fora de ordem,
+não há limite de atrase ou jitter, não há garantia de débito mínimo)
+
+Atrase na fila de espera, ao baixar o nível de congestionamento
+
+Vantagens: melhor qualidade de serviço, melhor experiência do utilizador. 
+Desvantagens: obriga a manter informação de estado por fluxo, que potencialmente cresce com O(n^2) no número de terminais
+
+O terminal está a iniciar o processo de pedido de um IP para se associar. O endereço 0.0.0.0 é um endereço inválido que só pode ser
+usado como origem para indicar que o cliente ainda não tem um endereço de IP. O endereço de destino é 255.255.255.255, porque esse 
+é um endereço de broadcast local, portanto envia para todos os nós na mesma ligação.
+
