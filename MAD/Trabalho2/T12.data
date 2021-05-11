@@ -1,0 +1,54 @@
+data;
+
+set types  := R C I;
+set months := 1 2 3 4 5 6 7 8 9 10 11 12;
+set productionLines := Cleaning Cooking Packing;
+
+param mercuryPrices :   R   C   I   :=
+            1           8   8   10
+            2           7   5   11
+            3           7   8   10
+            4           9   12  12
+            5           12  12  13
+            6           22  20  15
+            7           18  35  22
+            8           19  30  35
+            9           15  25  30
+            10          9   23  20
+            11          7   20  15
+            12          6   10  12  ;
+
+param venusPrices : R   C   I   := 
+            1       12  13  10           
+            2       10  25  10
+            3       10  28  10
+            4       10  32  10
+            5       22  32  10
+            6       32  40  25
+            7       13  45  52
+            8       11  40  75
+            9       10  35  20   
+            10      10  33  20
+            11      10  20  15
+            12      10  10  12  ;
+
+param marsPrices :  R   C   I   :=
+            1       10  23  20     
+            2       10  35  20
+            3       10  38  20
+            4       10  42  20
+            5       10  42  20
+            6       10  50  35
+            7       10  55  62
+            8       10  50  65
+            9       10  45  30
+            10      10  43  30
+            11      10  30  25
+            12      10  20  22  ;
+
+param productionLinesCapacity : R       C       I       :=
+        Cleaning                1000    1535    1750
+        Cooking                 1850    850     1200
+        Packing                 750     1500    2000    ;
+
+end;
