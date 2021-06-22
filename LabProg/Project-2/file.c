@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
   fclose(fp);
 
-  printf("%d\n", count);      // Number of words
+  printf("Number of words: %d\n", count);      // Number of words
   return 0;
 }
 
